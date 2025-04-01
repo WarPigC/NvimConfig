@@ -1,7 +1,5 @@
 
 "                                        NOTE: Copy text in clipboard using: <"+>{motion} command
-    
-"                                       BUG: fix jdtls
 
 set relativenumber                                              
 set number
@@ -11,7 +9,7 @@ set statusline=nvim_treesitter#statusline()
 set foldexpr=nvim_treesitter#foldexpr()
 set encoding=UTF-8
 set termguicolors
-set autoindent expandtab tabstop=4 shiftwidth=4
+set autoindent tabstop=4 shiftwidth=4 smarttab
 :nnoremap ff <cmd>lua require('telescope.builtin').find_files()<cr>
 :nnoremap fb <cmd>lua require('telescope.builtin').buffers()<cr>
 
@@ -46,7 +44,6 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 
 " lsp 
-Plug 'mfussenegger/nvim-jdtls'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'williamboman/mason.nvim'
 
@@ -66,6 +63,8 @@ call plug#end()
 
 
 lua << EOF
+
+
 
 require('presence').setup()
 
@@ -112,54 +111,10 @@ require("mason-lspconfig").setup({})
 require("lspconfig").clangd.setup({})
 require("lspconfig").jedi_language_server.setup({})
 
-
--- jdtls config
-local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-
-local workspace_dir = '/path/to/workspace-root/' .. project_name
-
-
-local config = {
-    -- starts server
-  cmd = {
-
-    'java',
-    '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-    '-Dosgi.bundles.defaultStartLevel=4',
-    '-Declipse.product=org.eclipse.jdt.ls.core.product',
-    '-Dlog.protocol=true',
-    '-Dlog.level=ALL',
-    '-Xmx1g',
-    '--add-modules=ALL-SYSTEM',
-    '--add-opens', 'java.base/java.util=ALL-UNNAMED',
-    '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-
-    '-jar', 'C:\\Users\\callm\\AppData\\Local\\nvim-data\\mason\\packages\\jdtls\\plugins\\org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar',
-         -- Must point to the                                                     Change this to
-         -- eclipse.jdt.ls installation                                           the actual version
-    '-configuration', 'C:\\Users\\callm\\AppData\\Local\\nvim-data\\mason\\packages\\jdtls\\config_win',
-                    -- Must point to the                      Change to one of `linux`, `win` or `mac`
-                    -- eclipse.jdt.ls installation            Depending on your system.
-    '-data', workspace_dir,
-  },
-  root_dir = vim.fs.root(0, {".git", "mvnw", "gradlew"}),
-  settings = {
-    java = {
-    }
-  },
-}
--- This starts a new client & server,
--- or attaches to an existing client & server depending on the `root_dir`.
-require('jdtls').start_or_attach(config)
-
 require'nvim-treesitter.configs'.setup {
    highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = { },  -- list of language that will be disabled
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
+    disable = {},  -- list of language that will be disabled
     additional_vim_regex_highlighting = false ,
   },
 }
