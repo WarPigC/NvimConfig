@@ -44,11 +44,12 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 
 " lsp 
-Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim', { 'commit': '1a31f824b9cd5bc6f342fc29e9a53b60d74af245' }
+Plug 'williamboman/mason.nvim', { 'commit': 'fc98833b6da5de5a9c5b1446ac541577059555be' }
 
 " lsp config
-Plug 'neovim/nvim-lspconfig'
+Plug 'neovim/nvim-lspconfig', { 'commit': '4ea9083b6d3dff4ddc6da17c51334c3255b7eba5' }
+
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -63,8 +64,6 @@ call plug#end()
 
 
 lua << EOF
-
-
 
 require('presence').setup()
 
@@ -96,7 +95,7 @@ nnoremap <silent> <S-TAB> :BufferLineCyclePrev<CR>
 
 
 require("mason").setup({
-    ui = {
+ ui = {
         icons = {
             package_installed = "✓",
             package_pending = "--",
@@ -105,15 +104,18 @@ require("mason").setup({
     }
 })
 
-require("mason-lspconfig").setup({})
+
+require("mason-lspconfig").setup()
+
 
 -- install lsps
 require("lspconfig").clangd.setup({})
 require("lspconfig").jedi_language_server.setup({})
 
+
 require'nvim-treesitter.configs'.setup {
    highlight = {
-    enable = true,              -- false will disable the whole extension
+	 enable = true,
     disable = {},  -- list of language that will be disabled
     additional_vim_regex_highlighting = false ,
   },
@@ -144,16 +146,18 @@ local cmp = require'cmp'
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
     }, {
       { name = 'buffer' },
     })
   })
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
     
 require('lspconfig')['clangd'].setup {
+	capabilities = capabilities
 	}
 require('lspconfig')['jedi_language_server'].setup {
+	capabilities = capabilities
   }
-
 EOF
