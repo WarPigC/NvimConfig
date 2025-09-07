@@ -152,12 +152,7 @@ local cmp = require'cmp'
   })
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
+ 
+vim.diagnostic.config({ virtual_text = true })
     
-require('lspconfig')['clangd'].setup {
-	capabilities = capabilities
-	}
-require('lspconfig')['jedi_language_server'].setup {
-	capabilities = capabilities
-  }
 EOF
