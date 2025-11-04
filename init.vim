@@ -19,7 +19,8 @@ tnoremap <Esc> <C-\><C-n>
 call plug#begin()    
 
 " misc
-Plug 'https://github.com/andweeb/presence.nvim'
+Plug 'vyfor/cord.nvim'
+" Plug 'andweeb/presence.nvim'
 
 " text processing / startup screen / logos
 Plug 'altermo/ultimate-autopair.nvim'
@@ -65,7 +66,17 @@ call plug#end()
 
 lua << EOF
 
-require('presence').setup()
+
+--require('presence').setup()
+require('cord').setup{
+	display = {
+		theme = 'atom',
+		flavor = 'dark',
+		view = 'full',
+		swap_fields = false,
+		swap_icons = false,
+	  },
+}
 
 require('ultimate-autopair').setup()
 
