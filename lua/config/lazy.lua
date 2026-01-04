@@ -19,11 +19,14 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.opt.shiftwidth = 4
-vim.opt.relativenumber = true
-
 vim.opt.termguicolors = true
 
+vim.opt.shiftwidth = 4
+vim.opt.relativenumber = true
+vim.opt.tabstop = 4
+
+vim.opt.smarttab = true
+vim.opt.autoindent = true
 
 
 require("lazy").setup({
