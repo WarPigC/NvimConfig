@@ -1,7 +1,10 @@
 return {
 
 	{
-		'vyfor/cord.nvim'	
+	    'vyfor/cord.nvim',
+	    run = ':Cord update',
+	    opts = {}
+
 	}
 
 }
