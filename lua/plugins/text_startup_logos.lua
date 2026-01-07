@@ -9,6 +9,7 @@ return {
     {
       "startup-nvim/startup.nvim",
       dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", "nvim-telescope/telescope-file-browser.nvim" },
+
       config = function()
 	require "startup".setup()
       end
@@ -16,7 +17,9 @@ return {
 
     {
 	"nvim-treesitter/nvim-treesitter",
-	opts = {}
+	lazy = false,
+	build = ":TSUpdate",
+	opts = { }
     },
 
     {
@@ -26,6 +29,7 @@ return {
 	require "startup".setup()
       end
     },
+
 
     {
 	"nvim-tree/nvim-web-devicons",

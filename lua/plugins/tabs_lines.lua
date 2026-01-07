@@ -2,7 +2,11 @@ return {
 
     {
 	"akinsho/bufferline.nvim",
-	opts = {}
+	opts = {
+		options = {
+			separator_style = "slant",
+		}
+	}
     },
     
     {
@@ -11,7 +15,8 @@ return {
 
     {
 	'nvim-lualine/lualine.nvim',
-	dependencies = { 'nvim-tree/nvim-web-devicons' }
+	dependencies = { 'nvim-tree/nvim-web-devicons' },
+	opts = {  },
     }
 
 }
