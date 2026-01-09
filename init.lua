@@ -10,6 +10,7 @@ nnoremap <silent> <S-TAB> :BufferLineCyclePrev<CR>
 
 nnoremap <leader>y "+y
 nnoremap <leader>p "+p
+nnoremap <leader>P "+P
 nnoremap <leader>d "+d
 
 :nnoremap ff <cmd>lua require('telescope.builtin').find_files()<cr>
