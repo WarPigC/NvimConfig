@@ -1,12 +1,12 @@
 require("config.lazy")
 
-vim.cmd("colorscheme rose-pine")
-
 --NOTE: work on it
 -- require("lspconfig").jedi_language_server.setup({})
 -- require("lspconfig").clangd.setup({})
 
 vim.cmd[[
+colorscheme rose-pine
+
 nnoremap <silent> <TAB> :BufferLineCycleNext<CR>
 nnoremap <silent> <S-TAB> :BufferLineCyclePrev<CR>
 
