@@ -13,9 +13,13 @@ vim.opt.tabstop = 4
 vim.opt.smarttab = true
 vim.opt.autoindent = true
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'cpp', 'c', 'html', 'typescript', 'javascript', 'css', 'python' },
+  callback = function() vim.treesitter.start() end,
+})
 
 vim.cmd[[
-colorscheme rose-pine
+colorscheme ashen
 
 nnoremap <silent> <TAB> :BufferLineCycleNext<CR>
 nnoremap <silent> <S-TAB> :BufferLineCyclePrev<CR>
