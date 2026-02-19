@@ -4,6 +4,16 @@ require("config.lazy")
 -- require("lspconfig").jedi_language_server.setup({})
 -- require("lspconfig").clangd.setup({})
 
+vim.opt.termguicolors = true
+
+vim.opt.shiftwidth = 4
+vim.opt.relativenumber = true
+vim.opt.tabstop = 4
+
+vim.opt.smarttab = true
+vim.opt.autoindent = true
+
+
 vim.cmd[[
 colorscheme rose-pine
 
