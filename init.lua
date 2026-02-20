@@ -13,6 +13,10 @@ vim.opt.tabstop = 4
 vim.opt.smarttab = true
 vim.opt.autoindent = true
 
+-- show_diagnostics keymap
+vim.api.nvim_set_keymap('n', '<leader>w', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+
+
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'cpp', 'c', 'html', 'typescript', 'javascript', 'css', 'python' },
   callback = function() vim.treesitter.start() end,
